@@ -1,4 +1,3 @@
-using System.Globalization;
 using NNPTPZ1.Fractals;
 
 namespace NNPTPZ1.CommandLine;
@@ -33,7 +32,7 @@ public sealed record CommandLineOptions(int Width, int Height, Viewport Viewport
 
     private static int ParsePositiveInt(string value, string name)
     {
-        if (!int.TryParse(value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var result) || result <= 0)
+        if (!int.TryParse(value, out var result) || result <= 0)
         {
             throw new ArgumentException($"{name} must be a positive integer, got '{value}'.", name);
         }
@@ -43,7 +42,7 @@ public sealed record CommandLineOptions(int Width, int Height, Viewport Viewport
 
     private static double ParseDouble(string value, string name)
     {
-        if (!double.TryParse(value, NumberStyles.Float, CultureInfo.InvariantCulture, out var result)
+        if (!double.TryParse(value, out var result)
             || !double.IsFinite(result))
         {
             throw new ArgumentException($"{name} must be a number, got '{value}'.", name);
