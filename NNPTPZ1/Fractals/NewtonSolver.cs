@@ -7,10 +7,12 @@ public readonly record struct NewtonResult(Complex Point, int Iterations);
 public sealed class NewtonSolver
 {
     public const int DefaultRequiredSmallSteps = 30;
-
     public const double DefaultSmallStepThreshold = 0.5;
-
     public const int DefaultMaxIterations = 1000;
+
+    public int RequiredSmallSteps { get; init; } = DefaultRequiredSmallSteps;
+    public double SmallStepThreshold { get; init; } = DefaultSmallStepThreshold;
+    public int MaxIterations { get; init; } = DefaultMaxIterations;
 
     private readonly Polynomial _polynomial;
     private readonly Polynomial _derivative;
@@ -21,10 +23,6 @@ public sealed class NewtonSolver
         _polynomial = polynomial;
         _derivative = polynomial.Derive();
     }
-
-    public int RequiredSmallSteps { get; init; } = DefaultRequiredSmallSteps;
-    public double SmallStepThreshold { get; init; } = DefaultSmallStepThreshold;
-    public int MaxIterations { get; init; } = DefaultMaxIterations;
 
     public NewtonResult Solve(Complex initialGuess)
     {

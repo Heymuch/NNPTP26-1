@@ -4,6 +4,14 @@ public sealed class ColorPalette
 {
     public const int DefaultDarkeningPerIteration = 2;
 
+    public int DarkeningPerIteration { get; }
+
+    public static ColorPalette Default { get; } = new(
+    [
+        RgbColor.Red, RgbColor.Blue, RgbColor.Green, RgbColor.Yellow, RgbColor.Orange,
+        RgbColor.Fuchsia, RgbColor.Gold, RgbColor.Cyan, RgbColor.Magenta,
+    ]);
+
     private readonly RgbColor[] _rootColors;
 
     public ColorPalette(IEnumerable<RgbColor> rootColors, int darkeningPerIteration = DefaultDarkeningPerIteration)
@@ -18,14 +26,6 @@ public sealed class ColorPalette
         ArgumentOutOfRangeException.ThrowIfNegative(darkeningPerIteration);
         DarkeningPerIteration = darkeningPerIteration;
     }
-
-    public static ColorPalette Default { get; } = new(
-    [
-        RgbColor.Red, RgbColor.Blue, RgbColor.Green, RgbColor.Yellow, RgbColor.Orange,
-        RgbColor.Fuchsia, RgbColor.Gold, RgbColor.Cyan, RgbColor.Magenta,
-    ]);
-
-    public int DarkeningPerIteration { get; }
 
     public RgbColor GetColor(int rootIndex, int iterations)
     {

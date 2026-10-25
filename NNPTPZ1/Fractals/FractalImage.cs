@@ -2,6 +2,9 @@ namespace NNPTPZ1.Fractals;
 
 public sealed class FractalImage
 {
+    public int Width { get; }
+    public int Height { get; }
+
     private readonly RgbColor[] _pixels;
 
     public FractalImage(int width, int height)
@@ -13,9 +16,6 @@ public sealed class FractalImage
         Height = height;
         _pixels = new RgbColor[checked(width * height)];
     }
-
-    public int Width { get; }
-    public int Height { get; }
 
     public RgbColor this[int column, int row]
     {

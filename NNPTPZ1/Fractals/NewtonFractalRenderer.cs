@@ -6,6 +6,10 @@ public sealed class NewtonFractalRenderer
 {
     private const double AxisOffset = 0.0001;
 
+    private static Complex AvoidAxes(Complex point) => new(
+        point.Real == 0 ? AxisOffset : point.Real,
+        point.Imaginary == 0 ? AxisOffset : point.Imaginary);
+
     private readonly NewtonSolver _solver;
     private readonly ColorPalette _palette;
 
@@ -55,8 +59,4 @@ public sealed class NewtonFractalRenderer
 
         return results;
     }
-
-    private static Complex AvoidAxes(Complex point) => new(
-        point.Real == 0 ? AxisOffset : point.Real,
-        point.Imaginary == 0 ? AxisOffset : point.Imaginary);
 }

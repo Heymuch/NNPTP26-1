@@ -4,6 +4,9 @@ namespace NNPTPZ1.Mathematics;
 
 public sealed class Polynomial
 {
+    public IReadOnlyList<Complex> Coefficients => _coefficients;
+    public int Degree => _coefficients.Length - 1;
+
     private readonly Complex[] _coefficients;
 
     public Polynomial(params IEnumerable<Complex> coefficients)
@@ -11,10 +14,6 @@ public sealed class Polynomial
         ArgumentNullException.ThrowIfNull(coefficients);
         _coefficients = [.. coefficients];
     }
-
-    public IReadOnlyList<Complex> Coefficients => _coefficients;
-
-    public int Degree => _coefficients.Length - 1;
 
     public Polynomial Derive() =>
         new(_coefficients.Skip(1).Select((coefficient, index) => coefficient * (index + 1)));

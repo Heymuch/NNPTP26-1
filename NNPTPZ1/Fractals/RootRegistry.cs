@@ -6,6 +6,8 @@ public sealed class RootRegistry
 {
     public const double DefaultToleranceSquared = 0.01;
 
+    public IReadOnlyList<Complex> Roots => _roots;
+
     private readonly List<Complex> _roots = [];
     private readonly double _toleranceSquared;
 
@@ -15,7 +17,6 @@ public sealed class RootRegistry
         _toleranceSquared = toleranceSquared;
     }
 
-    public IReadOnlyList<Complex> Roots => _roots;
 
     public int GetOrAddRootIndex(Complex point)
     {

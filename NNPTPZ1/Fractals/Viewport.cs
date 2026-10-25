@@ -4,6 +4,11 @@ namespace NNPTPZ1.Fractals;
 
 public sealed record Viewport
 {
+    public double XMin { get; }
+    public double XMax { get; }
+    public double YMin { get; }
+    public double YMax { get; }
+
     public Viewport(double xMin, double xMax, double yMin, double yMax)
     {
         if (!(xMin < xMax))
@@ -21,11 +26,6 @@ public sealed record Viewport
         YMin = yMin;
         YMax = yMax;
     }
-
-    public double XMin { get; }
-    public double XMax { get; }
-    public double YMin { get; }
-    public double YMax { get; }
 
     public Complex ToComplex(int column, int row, int width, int height)
     {
